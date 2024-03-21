@@ -6,18 +6,17 @@ const openai = new OpenAI({
 
   })
   
-export async function sendOpenAi(input) {
-    try{
-        const chatCompletion = await openai.chat.completions.create({
-          messages: [{ role: 'user', content: input }],
+export async function sendOpenAi(message) {
+  try{
+      const chatCompletion = await openai.chat.completions.create({
+          messages: [{ role: 'user', content: message }],
           model: 'gpt-3.5-turbo',
-        });
+      })
 
-       return chatCompletion.choices[0];
+      return chatCompletion.choices[0];
     } catch (error) {
-        console.error('Error:', error)
+      console.error('Error:', error)
 
-        return error
+      return error
     }
-
-    }
+  }
