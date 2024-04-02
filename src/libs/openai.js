@@ -1,7 +1,7 @@
 import OpenAI from "openai"
 
 const openai = new OpenAI({
-    apiKey: "[OPENAI_API_KEY]",
+    apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
     dangerouslyAllowBrowser: true
 
   })
@@ -15,8 +15,8 @@ export async function sendOpenAi(message) {
 
       return chatCompletion.choices[0];
     } catch (error) {
-      console.error('Error:', error)
+      console.error('Error: terjadi kesalahan', error)
 
       return error
     }
-  }
+}
