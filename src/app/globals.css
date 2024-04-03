@@ -31,7 +31,3 @@ body {
     text-wrap: balance;
   }
 }
-
-body, html {
-  overflow: hidden;
-}
