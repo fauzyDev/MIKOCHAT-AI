@@ -7,10 +7,10 @@ import Footer from "@/components/Footer";
 import Image from "next/image";
 
 const Page = () => {
-    const [input, setInput] = useState("")
-    const [message, saveSetMessage] = useState([])
-    const [isOutput, setIsOutput] = useState(false)
-    const chatRef = useRef(null)
+    const [input, setInput] = useState("");
+    const [message, saveSetMessage] = useState([]);
+    const [isOutput, setIsOutput] = useState(false);
+    const chatRef = useRef(null);
 
     useEffect(() => {
         chatRef.current.scrollTop = chatRef.current.scrollHeight;
@@ -27,7 +27,13 @@ const Page = () => {
         saveSetMessage([...message, newMessage, outputMessage])
         setInput("");
         setIsOutput(true);
+    }
 
+    const handlePress = async (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            await handleButton();
+        }
     }
 
     return (
@@ -60,14 +66,15 @@ const Page = () => {
                         placeholder="Ketik pesan" 
                         className="flex-grow px-4 py-2 sm:mr-1 text-black border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" 
                         value={input} 
-                        onChange={(e) => setInput(e.target.value)} 
+                        onChange={(e) => setInput(e.target.value)}
+                        onKeyDown={handlePress} 
                         style={{ minWidth: '0' }}/>
 
                     <button 
                         onClick={handleButton} 
                         className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 ml-2">
                         Kirim
-                    </button>
+                    </button> 
                 </div>
                 <Footer/>
             </div>
