@@ -14,7 +14,7 @@ const TypingAnimation = ({ text }) => {
             if (currentIndex > text.length) {
                 clearInterval(typingInterval)
             }
-        }, 50);
+        }, 45);
         
         return () => clearInterval(typingInterval)
 
