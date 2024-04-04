@@ -78,8 +78,8 @@ const Page = () => {
                     </button> 
                 </div>
             </div>
-        </div>
         <Footer/>
+        </div>
         </>
     )
 }
