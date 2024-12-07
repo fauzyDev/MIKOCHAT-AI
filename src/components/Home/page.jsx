@@ -1,7 +1,6 @@
 'use client'
 
 import React from "react";
-// import { sendOpenAi } from "@/libs/openai";
 import TypingAnimation from "@/libs/TypingAnimation";
 import Image from "next/image";
 
@@ -20,7 +19,14 @@ const Page = () => {
             return;
         }
 
-        const data = await sendOpenAi(input);
+        const data = await fetch('/api/route', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ message: input }),
+        });
+
         const newMessage = { user: "SAYA", content: input }
         const outputMessage = { ai: "MIKO AI", content: data.message.content }
         saveSetMessage([...message, newMessage, outputMessage])
@@ -40,7 +46,7 @@ const Page = () => {
             {/* Pesan pengguna & Balasan dari MIKO AI*/}
             <div ref={chatRef} className="flex flex-col flex-grow overflow-y-auto mb-4 p-4" style={{ scrollBehavior: 'smooth' }}>
             <div className="flex justify-center">
-                <Image src="/miko.jpg" alt="" width={100} height={100} className="rounded-full border-2 border-sky-500 mb-2"/>
+                <Image src="/miko.jpg" alt="" width={100} height={100} priority={true} className="rounded-full border-2 border-sky-500 mb-2"/>
             </div>
             <h2 className="text-xl font-bold text-center mb-4 text-white">How can I help you today?</h2>
                 {message.map((messages, index) => (
