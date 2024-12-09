@@ -19,7 +19,7 @@ const Page = () => {
             return;
         }
 
-        const data = await fetch('/api/route', {
+        const response = await fetch('/api', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -27,8 +27,9 @@ const Page = () => {
             body: JSON.stringify({ message: input }),
         });
 
+        const data = await response.json();
         const newMessage = { user: "SAYA", content: input }
-        const outputMessage = { ai: "MIKO AI", content: data.message.content }
+        const outputMessage = { ai: "MIKO AI", content: data.data }
         saveSetMessage([...message, newMessage, outputMessage])
         setInput("");
         setIsOutput(true);
@@ -49,9 +50,10 @@ const Page = () => {
                 <Image src="/miko.jpg" alt="" width={100} height={100} priority={true} className="rounded-full border-2 border-sky-500 mb-2"/>
             </div>
             <h2 className="text-xl font-bold text-center mb-4 text-white">How can I help you today?</h2>
+
                 {message.map((messages, index) => (
                     <div key={index} className={messages.user === "SAYA" ? "self-end mb-4" : "self-start"}>
-                        <div className={messages.user === "SAYA" ? "bg-gray-200 text-black rounded-lg shadow-md px-4 py-2 flex-grow" : 
+                        <div className={messages.user === "SAYA" ? "bg-gray-300 text-black rounded-lg shadow-md px-4 py-2 flex-grow" : 
                             "bg-blue-500 text-white rounded-lg shadow-md px-4 py-2 flex-grow mb-4"}>
                             <p className="font-bold">{messages.ai === "MIKO AI" ? messages.ai : messages.user}</p>
                             {messages.ai === "MIKO AI" && isOutput ? <TypingAnimation text={messages.content} className="text-justify"/> : 
