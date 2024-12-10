@@ -3,8 +3,9 @@
 import React from "react";
 import TypingAnimation from "@/libs/TypingAnimation";
 import Image from "next/image";
-import { Button } from "@nextui-org/button";
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
+import { Button } from "@nextui-org/button";
+import { Input } from "@nextui-org/input";
 
 const Page = () => {
     const [input, setInput] = React.useState("");
@@ -68,12 +69,13 @@ const Page = () => {
             </div>
 
             {/* Input dan tombol kirim */}
-            <div className="bg-zinc-600 rounded-lg shadow p-4">
-                <div className="flex flex-nowrap sm:flex-row items-center">
-                    <input 
+            <div className="bg-zinc-700 rounded-md shadow p-4">
+                <div className="flex w-full flex-nowrap sm:flex-row items-center">
+                    <Input
+                        color="default"
                         type="text" 
                         placeholder="Ketik pesan" 
-                        className="flex-grow px-4 py-2 sm:mr-1 text-black border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" 
+                        className="flex-grow sm:mr-1 text-white bg-zinc-500 rounded-md focus:border-blue-500" 
                         value={input} 
                         onChange={(e) => setInput(e.target.value)}
                         onKeyDown={handlePress} 
