@@ -69,23 +69,24 @@ const Page = () => {
             </div>
 
             {/* Input dan tombol kirim */}
-            <div className="bg-zinc-700 rounded-md shadow p-4">
+            <div className="bg-zinc-700 rounded shadow p-4">
                 <div className="flex w-full flex-nowrap sm:flex-row items-center">
                     <Input
                         color="default"
-                        type="text" 
-                        placeholder="Ketik pesan" 
-                        className="flex-grow sm:mr-1 text-white bg-zinc-500 rounded-md focus:border-blue-500" 
+                        type="text"
+                        size="md"
+                        radius="none"
+                        className="focus-within:border-2 focus-within:border-blue-400 focus-within:rounded" 
+                        placeholder="Ketik pesan"
                         value={input} 
                         onChange={(e) => setInput(e.target.value)}
-                        onKeyDown={handlePress} 
-                        style={{ minWidth: '0' }}/>
+                        onKeyDown={handlePress}/>
 
                     <Button 
                         onClick={handleButton}
                         color="primary" 
                         size="sm"
-                        className="px-4 py-2  text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 ml-2">
+                        className="px-4 py-2  text-white font-semibold rounded-md hover:bg-blue-400 focus:outline-none focus:bg-blue-400 ml-2">
                         <SendOutlinedIcon/>
                     </Button> 
                 </div>
