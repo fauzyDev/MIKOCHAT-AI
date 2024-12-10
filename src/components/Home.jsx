@@ -3,6 +3,8 @@
 import React from "react";
 import TypingAnimation from "@/libs/TypingAnimation";
 import Image from "next/image";
+import { Button } from "@nextui-org/button";
+import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 
 const Page = () => {
     const [input, setInput] = React.useState("");
@@ -19,7 +21,7 @@ const Page = () => {
             return;
         }
 
-        const response = await fetch('/api', {
+        const response = await fetch('/api/data', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -55,7 +57,9 @@ const Page = () => {
                     <div key={index} className={messages.user === "SAYA" ? "self-end mb-4" : "self-start"}>
                         <div className={messages.user === "SAYA" ? "bg-gray-300 text-black rounded-lg shadow-md px-4 py-2 flex-grow" : 
                             "bg-blue-500 text-white rounded-lg shadow-md px-4 py-2 flex-grow mb-4"}>
-                            <p className="font-bold">{messages.ai === "MIKO AI" ? messages.ai : messages.user}</p>
+                            <p className="font-bold">
+                            {messages.ai === "MIKO AI" ? messages.ai : messages.user}
+                            </p>
                             {messages.ai === "MIKO AI" && isOutput ? <TypingAnimation text={messages.content} className="text-justify"/> : 
                             <p>{messages.content}</p> }
                         </div>
@@ -64,7 +68,7 @@ const Page = () => {
             </div>
 
             {/* Input dan tombol kirim */}
-            <div className="bg-gray-600 rounded-lg shadow p-4">
+            <div className="bg-zinc-600 rounded-lg shadow p-4">
                 <div className="flex flex-nowrap sm:flex-row items-center">
                     <input 
                         type="text" 
@@ -75,11 +79,13 @@ const Page = () => {
                         onKeyDown={handlePress} 
                         style={{ minWidth: '0' }}/>
 
-                    <button 
-                        onClick={handleButton} 
-                        className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 ml-2">
-                        Kirim
-                    </button> 
+                    <Button 
+                        onClick={handleButton}
+                        color="primary" 
+                        size="sm"
+                        className="px-4 py-2  text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 ml-2">
+                        <SendOutlinedIcon/>
+                    </Button> 
                 </div>
             </div>
         </>           

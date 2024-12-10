@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from "react"
-
 const TypingAnimation = ({ text }) => {
     const [displayText, setDisplayText] = useState("")
 
