@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useEffect } from "react"
+import React from "react"
 const TypingAnimation = ({ text }) => {
-    const [displayText, setDisplayText] = useState("")
+    const [displayText, setDisplayText] = React.useState("");
 
-    useEffect(() =>{
+    React.useEffect(() =>{
         let currentIndex = 0;
         const typingInterval = setInterval(() => {
             setDisplayText(text.substring(0, currentIndex))
