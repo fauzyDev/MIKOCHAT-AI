@@ -32,7 +32,7 @@ const Page = () => {
 
         const data = await response.json();
         const newMessage = { user: "SAYA", content: input }
-        const outputMessage = { ai: "MIKO AI", content: data.data }
+        const outputMessage = { ai: "MIKO AI", reply: data.data }
         saveSetMessage([...message, newMessage, outputMessage])
         setInput("");
         setIsOutput(true);
@@ -55,14 +55,14 @@ const Page = () => {
             <h2 className="text-xl font-bold text-center mb-4 text-white">How can I help you today?</h2>
 
                 {message.map((messages, index) => (
-                    <div key={index} className={messages.user === "SAYA" ? "self-end mb-4" : "self-start"}>
+                    <div key={index} className={messages.user === "SAYA" ? "self-end mb-4" : "self-start"} style={{ maxWidth: "75%", wordWrap: "break-word", overflowWrap: "break-word" }}>
                         <div className={messages.user === "SAYA" ? "bg-gray-300 text-black rounded-lg shadow-md px-4 py-2 flex-grow" : 
-                            "bg-blue-500 text-white rounded-lg shadow-md px-4 py-2 flex-grow mb-4"}>
-                            <p className="font-bold">
+                            "bg-blue-600 text-white rounded-lg shadow-md px-4 py-2 flex-grow mb-4"}>
+                            <h3 className="font-bold">
                             {messages.ai === "MIKO AI" ? messages.ai : messages.user}
-                            </p>
-                            {messages.ai === "MIKO AI" && isOutput ? <TypingAnimation text={messages.content} className="text-justify"/> : 
-                            <p>{messages.content}</p> }
+                            </h3>
+                            {messages.ai === "MIKO AI" && isOutput ? <TypingAnimation text={messages.reply} className="break-words text-justify"/> : 
+                            <p className="text-left">{messages.content}</p> }
                         </div>
                     </div>
                 ))}
@@ -83,7 +83,7 @@ const Page = () => {
                         onKeyDown={handlePress}/>
 
                     <Button 
-                        onClick={handleButton}
+                        onClick={handleButton} // onClick di next ui 2.8.0 ada bug
                         color="primary" 
                         size="sm"
                         className="px-4 py-2  text-white font-semibold rounded-md hover:bg-blue-400 focus:outline-none focus:bg-blue-400 ml-2">

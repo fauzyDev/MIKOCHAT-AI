@@ -5,15 +5,15 @@ const TypingAnimation = ({ text }) => {
     const [displayText, setDisplayText] = React.useState("");
 
     React.useEffect(() =>{
-        let currentIndex = 0;
+        let index = 0;
         const typingInterval = setInterval(() => {
-            setDisplayText(text.substring(0, currentIndex))
-            currentIndex++;
+            setDisplayText(text.substring(0, index))
+            index++;
 
-            if (currentIndex > text.length) {
+            if (index > text.length) {
                 clearInterval(typingInterval)
             }
-        }, 45);
+        }, 47);
         
         return () => clearInterval(typingInterval)
 
